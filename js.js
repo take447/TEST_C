@@ -30,7 +30,7 @@ window.onload = function() {
                 //データをGASに送る
 
                 //メッセージを送る
-                iff.sendMessages([
+                liff.sendMessages([
                     {
                       type:'text',
                       text:'本当はここで画像を送る'
