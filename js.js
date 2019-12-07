@@ -1,6 +1,8 @@
 var a = document.querySelector("canvas"),
     c = a.getContext("2d");
 
+a.setAttribute('height', window.innerHeight - $('#btn').outerHeight() - 10);
+
 a.ontouchstart = function (e) {
   e.preventDefault();
   c.moveTo(e.touches[0].pageX, e.touches[0].pageY);
