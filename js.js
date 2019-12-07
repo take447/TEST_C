@@ -1,28 +1,49 @@
-<!doctype html>
-<html lang="ja">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+var a = document.querySelector("canvas"),
+    c = a.getContext("2d");
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+a.ontouchstart = function (e) {
+  e.preventDefault();
+  c.moveTo(e.touches[0].pageX, e.touches[0].pageY);
+};
 
-    <title>お絵かきツール</title>
-  </head>
-  <body>
-    <div class="container">
-        <canvas id="canvas"></canvas>
-        <button id="btn" type="button" class="btn btn-primary btn-block">送信</button>
-    </div>
+a.ontouchmove = function (e) {
+  c.lineTo(e.touches[0].pageX, e.touches[0].pageY);
+  c.stroke();
+};
 
-    <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
-    <script type="text/javascript" src="./js.js"></script>
-    
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
-</html>
+
+
+
+window.onload = function() {
+    liff
+        .init({
+            liffId: "1653591503-06QwxbGD"
+        })
+        .then(() => {
+            //ここに処理を書く
+
+            //ボタンに送信処理を追加
+            document.getElementById('btn').addEventListener('click', function() {
+                //データを取得
+                var cdata = canvas.toDataURL('image/png');
+                
+                //データをGASに送る
+
+                //メッセージを送る
+                liff.sendMessages([
+                    {
+                      type:'text',
+                      text:'本当はここで画像を送る'
+                    }
+                  ])
+
+                //LIFFを閉じる
+                liff.closeWindow();                
+            });
+
+
+        })
+        .catch((err) => {
+
+        });
+};
