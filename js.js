@@ -17,7 +17,7 @@ a.ontouchmove = function (e) {
 window.onload = function() {
     liff
         .init({
-            liffId: ""
+            liffId: "1653591503-06QwxbGD"
         })
         .then(() => {
             //ここに処理を書く
