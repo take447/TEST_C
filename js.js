@@ -1,6 +1,7 @@
 var a = document.querySelector("canvas"),
     c = a.getContext("2d");
 
+a.setAttribute('width', $('.container').width());
 a.setAttribute('height', window.innerHeight - $('#btn').outerHeight() - 10);
 
 a.ontouchstart = function (e) {
