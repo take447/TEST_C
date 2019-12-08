@@ -31,17 +31,35 @@ window.onload = function() {
                 var cdata = canvas.toDataURL('image/png');
                 
                 //データをGASに送る
+                $.post('https://script.google.com/macros/s/AKfycbxjeLYDEopPbnpZerC0X2uuzvOY9W8d2swx2q2rjasWyre7FAA/exec',cdata)
 
-                //メッセージを送る
-                liff.sendMessages([
-                    {
-                      type:'text',
-                      text:'本当はここで画像を送る'
-                    }
-                  ])
+                    //サーバーからの返信を受け取る
+                    .done( function(data) {
+                        //メッセージを送る
+                        liff.sendMessages([
+                            {
+                            type:'text',
+                            text:'送信成功'
+                            }
+                        ])
+                    })
 
-                //LIFFを閉じる
-                liff.closeWindow();                
+                    //通信エラーの場合
+                    .fail( function() {
+                        //メッセージを送る
+                        liff.sendMessages([
+                            {
+                            type:'text',
+                            text:'送信成功'
+                            }
+                        ])
+                    } )
+
+                    //通信が終了した場合
+                    always ( function() {
+                        //LIFFを閉じる
+                        liff.closeWindow();       
+                    } )
             });
 
 
