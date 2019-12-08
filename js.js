@@ -43,7 +43,7 @@ window.onload = function() {
                         liff.sendMessages([
                             {
                             type:'text',
-                            text:'送信成功'
+                            text:data.url
                             }
                         ])
                     })
