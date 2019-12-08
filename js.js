@@ -56,7 +56,7 @@ window.onload = function() {
                     } )
 
                     //通信が終了した場合
-                    always ( function() {
+                    .always ( function() {
                         //LIFFを閉じる
                         liff.closeWindow();       
                     } )
