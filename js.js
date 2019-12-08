@@ -27,15 +27,22 @@ window.onload = function() {
 
             //ボタンに送信処理を追加
             document.getElementById('btn').addEventListener('click', function() {
-                //データを取得
-                var cdata = canvas.toDataURL('image/png');
-                var postdata ={
+
+                //ボタンを無効にする
+                document.getElementById("btn").disabled = "disabled";
+
+                //ユーザーのプロフィールを取得
+                liff.getProfile().then(function (profile) {
+                    
+                    //データを取得
+                    var cdata = canvas.toDataURL('image/png');
+                    var postdata ={
                         img: cdata,
-                        unm: 'テストユーザー'
+                        unm: profile.userId  +'_' + profile.displayName 
                     };
-                
-                //データをGASに送る
-                $.post('https://script.google.com/macros/s/AKfycbxjeLYDEopPbnpZerC0X2uuzvOY9W8d2swx2q2rjasWyre7FAA/exec',postdata)
+
+                    //データをGASに送る
+                    $.post('https://script.google.com/macros/s/AKfycbxjeLYDEopPbnpZerC0X2uuzvOY9W8d2swx2q2rjasWyre7FAA/exec',postdata)
 
                     //サーバーからの返信を受け取る
                     .done( function(data) {
@@ -64,6 +71,7 @@ window.onload = function() {
                         //LIFFを閉じる
                         liff.closeWindow();       
                     } )
+                })
             });
 
 
