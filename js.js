@@ -50,7 +50,7 @@ window.onload = function() {
                         liff.sendMessages([
                             {
                             type:'text',
-                            text:'送信成功'
+                            text:'送信失敗'
                             }
                         ])
                     } )
