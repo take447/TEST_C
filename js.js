@@ -29,9 +29,13 @@ window.onload = function() {
             document.getElementById('btn').addEventListener('click', function() {
                 //データを取得
                 var cdata = canvas.toDataURL('image/png');
+                var postdata ={
+                        img: cdata,
+                        unm: 'テストユーザー'
+                    };
                 
                 //データをGASに送る
-                $.post('https://script.google.com/macros/s/AKfycbxjeLYDEopPbnpZerC0X2uuzvOY9W8d2swx2q2rjasWyre7FAA/exec',cdata)
+                $.post('https://script.google.com/macros/s/AKfycbxjeLYDEopPbnpZerC0X2uuzvOY9W8d2swx2q2rjasWyre7FAA/exec',postdata)
 
                     //サーバーからの返信を受け取る
                     .done( function(data) {
