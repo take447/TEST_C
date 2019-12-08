@@ -49,10 +49,13 @@ window.onload = function() {
                         //メッセージを送る
                         liff.sendMessages([
                             {
-                            type:'text',
-                            text:data.url
+                                'type': 'image',
+                                'originalContentUrl': data.url,
+                                'previewImageUrl': data.url
                             }
                         ])
+                        //LIFFを閉じる
+                        liff.closeWindow(); 
                     })
 
                     //通信エラーの場合
@@ -64,12 +67,13 @@ window.onload = function() {
                             text:'送信失敗'
                             }
                         ])
+                        //ボタンを無効にする
+                        document.getElementById("btn").disabled = "";
                     } )
 
                     //通信が終了した場合
                     .always ( function() {
-                        //LIFFを閉じる
-                        liff.closeWindow();       
+                              
                     } )
                 })
             });
